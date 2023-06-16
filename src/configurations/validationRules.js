@@ -1,5 +1,8 @@
 import { check } from "express-validator";
 
+const validateGetTask = [
+    check("taskId", "Ingresa un número").exists().isInt()
+]
 
 const validateCreateTask = [
     check("title", "Ingresa un titulo valido de minimo 5 caracteres").exists().isLength({ min:5, max:50 }),
@@ -8,10 +11,6 @@ const validateCreateTask = [
     check("effective_date", "Ingresa una fecha correcta con el formato YYYY-MM-DD").isISO8601().exists(),
     check("responsible", "Ingresa un encargado para la tarea").exists().isLength({ min: 3 })
 ];
-
-const validateGetTask = [
-    check("taskId", "Ingresa un número").exists().isInt()
-]
 
 const updateTask = [
     check("taskId", "Ingresa un número").exists().isInt(),
@@ -22,4 +21,9 @@ const updateTask = [
     check("responsible", "Ingresa un encargado para la tarea").exists().isLength({ min: 3 })
 ]
 
-export { validateCreateTask, validateGetTask, updateTask }
+const validateGetTaskComment = [
+    check("taskId", "Ingresa un número").exists().isInt(),
+    check("commentId", "Ingresa un número").exists().isInt()
+]
+
+export { validateCreateTask, validateGetTask, updateTask, validateGetTaskComment }
