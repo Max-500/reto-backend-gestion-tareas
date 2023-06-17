@@ -1,9 +1,13 @@
+// Importaciones para la inicialiazacion y configuracion de la tabla
 import { DataTypes, Model } from "sequelize";
-import { db } from "../connection.js";
-import TaskModel from "./Task.js";
 
+// Importación de la conexion de la base de datos
+import { db } from "../connection.js";
+
+// Definición del modelo Tag
 class Tag extends Model{}
 
+// Inicialización del modelo Tag con los atributos de la tabla
 Tag.init({
     id:{
         type: DataTypes.BIGINT,
@@ -16,9 +20,10 @@ Tag.init({
         allowNull: false
     }
 },{
-    sequelize: db,
-    modelName: 'Tag',
-    timestamps: false
+    sequelize: db, // Conexion a la base de datos 
+    modelName: 'Tag', // Poniendo el nombre al modelo (Tag)
+    timestamps: false // Desactivando los campos de timestamps que trae por defecto ("createAt" y "updateAd")
 })
 
+// Exportando el modelo Tag
 export default Tag;

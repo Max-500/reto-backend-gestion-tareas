@@ -1,6 +1,7 @@
 import Task from "../database/models/Task.js";
 import Comment from "../database/models/Comment.js";
 
+// Servicio que trae todos los comentarios de una tarea en especifico
 const getAllTaskCommentService = async (taskId) => {
   let result = await Comment.findAll({ where: { task_id: taskId } }).catch(
     (error) => {
@@ -28,6 +29,7 @@ const getAllTaskCommentService = async (taskId) => {
   };
 };
 
+// Servicio que trae un comentario en especifico de una tarea en especifico
 const getTaskCommentService = async (taskId, commentId) => {
   let result = await Comment.findOne({
     where: {
@@ -58,6 +60,7 @@ const getTaskCommentService = async (taskId, commentId) => {
   };
 };
 
+// Servicio que crea un comentario de una tarea en especifico
 const createTaskCommentService = async (taskId, commentData) => {
   let result = await Task.findByPk(taskId).catch((error) => {
     console.error(error);
@@ -122,6 +125,7 @@ const updateTaskCommentService = async (taskId, commentId, commentData) => {
   };
 };
 
+// Servicio que elimina un comentario en especifico de una tarea en especifico
 const deleteTaskCommentService = async (taskId, commentId) => {
   let result = await Comment.destroy({
     where: {

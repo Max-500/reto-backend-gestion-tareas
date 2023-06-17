@@ -1,5 +1,6 @@
 import Tag from "../database/models/Tag.js"
 
+// Servicio que trae las tags de una tarea en especifico
 const getTaskTagService = async(taskId) => {
     let result = await Tag.findOne({
         where: {
@@ -26,6 +27,7 @@ const getTaskTagService = async(taskId) => {
       };
 }
 
+// Servicio que crea las tags de una tarea en especifico
 const createTaskTagService = async(taskId, tagArray) => {
     let tagJson = {
         tag: JSON.stringify(tagArray),
@@ -49,6 +51,7 @@ const createTaskTagService = async(taskId, tagArray) => {
 
 }
 
+// Servicio que permite actualizar las tags de una tarea en especifico
 const updateTaskTagService = async(taskId, updateTagData) => {
     let newTag = {
         tag: JSON.stringify(updateTagData)

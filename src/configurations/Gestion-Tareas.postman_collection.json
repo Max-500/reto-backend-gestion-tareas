@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "82e569a0-58d0-473c-adc5-438ffb75bca3",
+		"name": "Gestion-Tareas",
+		"description": "Aqui estan todos los endpoints y bodys para hacer uso de la API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23274593"
+	},
+	"item": [
+		{
+			"name": "GetAllTasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTask",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\"  :\"Titulo de la tarea\",\r\n    \"description\": \"Descripcion de la tarea\",\r\n    \"status\": \"En Progreso\",\r\n    \"effective_date\": \"2023-06-30\",\r\n    \"responsible\": \"Nombre del responsable\",\r\n    \"tags\": [\"Importante\", \"NodeJs\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CreateTask (En Progreso)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\"  :\"Titulo de la tarea\",\r\n    \"description\": \"Descripcion de la tarea\",\r\n    \"status\": \"En Progreso\",\r\n    \"effective_date\": \"2023-06-30\",\r\n    \"responsible\": \"Nombre del responsable\",\r\n    \"tags\": [\"Importante\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/api/v1/tasks/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tasks",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "30"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "29"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 19:51:24 GMT"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1687031762"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "386"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"182-wUVyDIYzCey4P4mk8ptthexsYE0\""
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Created\",\n    \"message\": \"El recurso solicitado se creo exitosamente\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Titulo de la tarea\",\n        \"description\": \"Descripcion de la tarea\",\n        \"status\": \"En Progreso\",\n        \"effective_date\": \"2023-06-30T00:00:00.000Z\",\n        \"responsible\": \"Nombre del responsable\",\n        \"tags\": {\n            \"tag\": {\n                \"id\": 1,\n                \"tag\": \"[\\\"Importante\\\"]\",\n                \"task_id\": 1\n            },\n            \"message\": \"La(s) etiqueta(s) ha sido creado correctamente\"\n        }\n    }\n}"
+				},
+				{
+					"name": "CreateTask (Terminada)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\"  :\"Titulo de la tarea\",\r\n    \"description\": \"Descripcion de la tarea\",\r\n    \"status\": \"Terminada\",\r\n    \"effective_date\": \"2023-06-30\",\r\n    \"responsible\": \"Nombre del responsable\",\r\n    \"tags\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/api/v1/tasks/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tasks",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "30"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "28"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 19:51:49 GMT"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1687031762"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "370"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"172-sF0Vv5e2L+Nf/QaWqsZMIM8pgE0\""
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Created\",\n    \"message\": \"El recurso solicitado se creo exitosamente\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Titulo de la tarea\",\n        \"description\": \"Descripcion de la tarea\",\n        \"status\": \"Terminada\",\n        \"effective_date\": \"2023-06-30T00:00:00.000Z\",\n        \"responsible\": \"Nombre del responsable\",\n        \"tags\": {\n            \"tag\": {\n                \"id\": 2,\n                \"tag\": \"[]\",\n                \"task_id\": 2\n            },\n            \"message\": \"La(s) etiqueta(s) ha sido creado correctamente\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "UpdateTask",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\"  :\"Titulo de la tarea\",\r\n    \"description\": \"Descripcion de la tarea\",\r\n    \"status\": \"En Progreso\",\r\n    \"effective_date\": \"2023-06-15\",\r\n    \"responsible\": \"Nombre del responsable\",\r\n    \"tags\": [\"Importante\", \"NodeJs\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "UpdateTask (Terminada)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\"  :\"Titulo de la tarea\",\r\n    \"description\": \"Descripcion de la tarea\",\r\n    \"status\": \"Terminada\",\r\n    \"effective_date\": \"2023-06-15\",\r\n    \"responsible\": \"Nombre del responsable\",\r\n    \"tags\": [\"Importante\", \"NodeJs\", \"JavaScript\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/api/v1/tasks/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "30"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "23"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 19:53:20 GMT"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1687031762"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-xlGttCfbVxR0DYh9s/cZ4WcdrbI\""
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Ok\",\n    \"message\": \"El recurso se actualizo correctamente\"\n}"
+				},
+				{
+					"name": "UpdateTask (En Progreso)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\"  :\"Titulo de la tarea\",\r\n    \"description\": \"Descripcion de la tarea\",\r\n    \"status\": \"En Progreso\",\r\n    \"effective_date\": \"2023-06-15\",\r\n    \"responsible\": \"Nombre del responsable\",\r\n    \"tags\": [\"Importante\", \"NodeJs\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/api/v1/tasks/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "30"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "21"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 19:53:56 GMT"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1687031762"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-xlGttCfbVxR0DYh9s/cZ4WcdrbI\""
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Ok\",\n    \"message\": \"El recurso se actualizo correctamente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "DeleteTask",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllTaskComments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/1/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTaskComments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/1/comments/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"1",
+						"comments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTaskComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Primer Comentario Realizado Para El Comentario 1\",\r\n    \"user\": \"Leonardo Cancino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/1/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTaskComment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Actualizando el primer comentario de la tarea 1\",\r\n    \"user\": \"Leonardo Cancino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/1/comments/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"1",
+						"comments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTaskComment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/tasks/1/comments/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"1",
+						"comments",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

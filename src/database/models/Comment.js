@@ -1,8 +1,13 @@
+// Importaciones para la inicialiazacion y configuracion de la tabla
 import { DataTypes, Model } from "sequelize";
+
+// Importación de la conexion a la base de datos
 import { db } from "../connection.js";
 
+// Definición del modelo Comment
 class Comment extends Model { }
 
+// Inicialización del modelo Comment con los atributos de la tabla
 Comment.init({
     id: {
         type: DataTypes.BIGINT,
@@ -19,9 +24,10 @@ Comment.init({
         allowNull: false
     }
 }, {
-    sequelize: db,
-    modelName: 'Comment',
-    timestamps: false
+    sequelize: db, // Conexion a la base de datos
+    modelName: 'Comment', // Poniendo nombre al modelo (Comment)
+    timestamps: false // Desactivando los campos de timestamps que trae por defecto ("createAt" y "updateAd")
 })
 
+// Exportando el modelo Comment
 export default Comment;

@@ -7,6 +7,7 @@ import {
   deleteTaskCommentService,
 } from "../services/commentService.js";
 
+// Controlador para traer todos los comentarios de una tarea especificada
 const getAllTaskComment = async (req, res) => {
   let validated = validate(req);
 
@@ -39,6 +40,7 @@ const getAllTaskComment = async (req, res) => {
   });
 };
 
+// Controlador para traer algun comentario en especifico de una tarea en especifico
 const getTaskComment = async (req, res) => {
   let validated = validate(req);
 
@@ -67,6 +69,7 @@ const getTaskComment = async (req, res) => {
   });
 };
 
+// Controlador para crear un comentario de una tarea en especifico
 const createTaskComment = async (req, res) => {
   let validated = validate(req, res);
 
@@ -97,6 +100,7 @@ const createTaskComment = async (req, res) => {
   });
 };
 
+// Controlador para actualizar un comentario en especifico de una tarea especificada
 const editTaskComment = async (req, res) => {
   let validated = validate(req, res);
 
@@ -132,6 +136,7 @@ const editTaskComment = async (req, res) => {
   });
 };
 
+// Controlador para eliminar un comentario de una tarea 
 const deleteTaskComment = async (req, res) => {
   let validated = validate(req);
 
@@ -163,6 +168,7 @@ const deleteTaskComment = async (req, res) => {
   });
 };
 
+// Funcion provisional para el manejo de las reglas de validación
 function validate(req) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -172,6 +178,7 @@ function validate(req) {
   }
 }
 
+// Exportaciones de todos los controladores de los comentarios
 export {
   getAllTaskComment,
   getTaskComment,

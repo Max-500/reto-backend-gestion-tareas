@@ -7,6 +7,7 @@ import {
   deleteTaskService,
 } from "../services/taskService.js";
 
+// Controlador que trae informacion breve de todas las tareas
 const getAllTask = async (req, res) => {
   let allTask = await getAllTaskService();
 
@@ -28,6 +29,7 @@ const getAllTask = async (req, res) => {
   }
 };
 
+// Controlador que trae toda la informacion de una tarea en especifico (tambien trae las etiquetas y comentarios de esa tarea)
 const getTask = async (req, res) => {
   let validated = validate(req, res);
   if (validated !== null || validated === undefined) {
@@ -55,6 +57,7 @@ const getTask = async (req, res) => {
   });
 };
 
+// Controlador que crea una tarea (tambien es opcional si quieres agregar etiquetas)
 const createTask = async (req, res) => {
   let validated = validate(req, res);
   if (validated !== null || validated === undefined) {
@@ -84,6 +87,7 @@ const createTask = async (req, res) => {
   });
 };
 
+// Controlador que permite editar lo relacionado a una tarea, como la tarea y etiquetas de la tarea
 const editTask = async (req, res) => {
   let validated = validate(req, res);
   if (validated !== null || validated === undefined) {
@@ -117,6 +121,7 @@ const editTask = async (req, res) => {
   });
 };
 
+// Controlador que elimina todo la tarea y lo relacionado a esta (incluye las etiquetas de la tarea y comentarios de esta)
 const deleteTask = async (req, res) => {
   let validated = validate(req, res);
   if (validated !== null || validated === undefined) {
@@ -146,6 +151,7 @@ const deleteTask = async (req, res) => {
   });
 };
 
+// Funcion provision para el manejo de errores
 function validate(req) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -155,4 +161,5 @@ function validate(req) {
   }
 }
 
+// Exportaciones de los controladores de las tareas
 export { getAllTask, getTask, createTask, editTask, deleteTask };

@@ -1,5 +1,7 @@
+// Importación de express-rate-limit
 import rateLimiter from "express-rate-limit";
 
+// Middleware de limitación de velocidad utilizando express-rate-limit
 const limiter = rateLimiter({
     windowMs: 5 * 60 * 1000, // Duración de la ventana en milisegundos (15 minutos en este ejemplo)
     max: 30, // Número máximo de peticiones permitidas durante la ventana
@@ -8,4 +10,5 @@ const limiter = rateLimiter({
     },
 });
 
+// Exportando el middleware
 export default limiter;

@@ -1,5 +1,6 @@
 import { getTaskTagService, createTaskTagService, updateTaskTagService } from "../services/tagService.js"
 
+// Controlador que trae todas las etiquetas de una tarea en especifico
 const getTaskTag = async(taskId) => {
     let getTags = await getTaskTagService(taskId);
     switch (getTags["status"]) {
@@ -19,6 +20,7 @@ const getTaskTag = async(taskId) => {
     }
 }
 
+// Controlador que crea etiquetas a una tarea en especifico
 const createTaskTag = async(taksId, tagArray) => {
     let newTag = await createTaskTagService(taksId, tagArray);
     switch (newTag["status"]) {
@@ -48,6 +50,7 @@ const createTaskTag = async(taksId, tagArray) => {
       }
 }
 
+// Controlador que permite editar una tag de una tarea en especifico
 const editTaskTag = async(taksId, tagData) => {
     let updateTag = await updateTaskTagService(taksId, tagData)
 
@@ -69,4 +72,5 @@ const editTaskTag = async(taksId, tagData) => {
       }
 }
 
+// Exportaciones de todos los controladores de las tags
 export { getTaskTag, createTaskTag, editTaskTag }

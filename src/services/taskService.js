@@ -2,6 +2,7 @@ import { createTaskTag, editTaskTag, getTaskTag } from "../controllers/tagContro
 import Task from "../database/models/Task.js";
 import { getAllTaskCommentService } from "./commentService.js";
 
+// Servicio que trae informacion breve sin comentarios y etiquetas de todas las tareas
 const getAllTaskService = async () => {
   let result = await Task.findAll().catch((error) => {
     console.error(error);
@@ -27,6 +28,7 @@ const getAllTaskService = async () => {
   };
 };
 
+// Servicio que trae toda la informacion de una tarea en especifico (tambien trae los comentarios y tags de esa tarea)
 const getTaskService = async (taskId) => {
   let result = await Task.findByPk(taskId).catch((error) => {
     console.error(error);
@@ -52,6 +54,7 @@ const getTaskService = async (taskId) => {
   };
 };
 
+// Servicio que permite crear una tarea
 const createTaskService = async (cratedTaskData, tagArray) => {
   let result = await Task.create(cratedTaskData).catch((error) => {
     console.error(error);
@@ -74,6 +77,7 @@ const createTaskService = async (cratedTaskData, tagArray) => {
   };
 };
 
+// Servicio que permite actualizar todo lo relacionado una tarea en especifico, por ende tambien las etiquetas de esa tarea
 const updateTaskService = async (taskId, updatedTaskData, updatedTaskTagData) => {
   let result = await Task.update(updatedTaskData, {
     where: { id: taskId },
@@ -87,7 +91,6 @@ const updateTaskService = async (taskId, updatedTaskData, updatedTaskTagData) =>
   }
   
   let resultTag = await editTaskTag(taskId, updatedTaskTagData);
-  console.log(result, resultTag["status"])
   if (result[0] !== 0 || resultTag["status"] !== "Not Modified") {
     return {
       status: "Ok",
@@ -97,11 +100,12 @@ const updateTaskService = async (taskId, updatedTaskData, updatedTaskTagData) =>
 
   return {
     status: "Not Modified",
-    message: "El recurso solicitado no existe",
+    message: "El recurso solicitado no se actualizo",
   };
 
 };
 
+// Servicio que permite eliminar una tarea en especifico y lo relacionado esta, por ende tambien elimina las tags y comentarios de esta
 const deleteTaskService = async (taksId) => {
   let result = await Task.destroy({
     where: { id: taksId },
@@ -138,14 +142,11 @@ async function getTags(taskId){
   return tag;  
 }
 
+// Funcion que llama a un servicio de Comentarios que trae todos los comentarios de esa tarea en especifico
 async function getComment(taskId) {
   return await getAllTaskCommentService(taskId);
 }
 
-async function updateTag(taskId, tagData){
-  console.log("Entro")
-  await editTaskTag(taskId, tagData);
-}
 
 export {
   getAllTaskService,
