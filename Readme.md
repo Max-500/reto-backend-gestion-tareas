@@ -58,4 +58,4 @@ Y ya fuera de la carpeta Models, tenemos el archivo connection.js donde hacemos 
 - index.js: Y que al ejecutar este archivo levanta todo la API
 
 ## Autor
-Esta API fue hecha todo por su servidor, Leonardo Javier Cancino Montoya, actualmente me encuentro estudiando la carrera en Ingenieria En Software y que tambien cabe decir que soy autodidacta y amante de NodeJs y de la programacióbn. Retomando el punto inicial este proyecto fue hecho por mi cuenta.
+Esta API fue hecha todo por su servidor, Leonardo Javier Cancino Montoya, actualmente me encuentro estudiando la carrera en Ingenieria En Software y que tambien cabe decir que soy autodidacta y amante de NodeJs y de la programación. Retomando el punto inicial este proyecto fue hecho por mi cuenta.
