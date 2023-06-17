@@ -24,7 +24,7 @@ const getAllTaskCommentService = async (taskId) => {
 
   return {
     status: "Ok",
-    data: result,
+    comments: result,
   };
 };
 
@@ -54,7 +54,7 @@ const getTaskCommentService = async (taskId, commentId) => {
 
   return {
     status: "Ok",
-    data: result,
+    comments: result,
   };
 };
 
@@ -101,8 +101,6 @@ const updateTaskCommentService = async (taskId, commentId, commentData) => {
   }).catch((error) => {
     console.error(error);
   });
-
-  console.log(result)
 
   if (result === undefined) {
     return {

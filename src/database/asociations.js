@@ -5,9 +5,14 @@ import Comment from "./models/Comment.js";
 import { db } from "./connection.js";
 
 // 1 Tarea a 1 Etiqueta
-Task.hasOne(Tag);
-
-Tag.belongsTo(Task);
+Task.hasOne(Tag, {
+  foreignKey:"task_id",
+  allowNull: false
+});
+Tag.belongsTo(Task, {
+  foreignKey:"task_id",
+  allowNull: false
+});
 
 // 1 Tarea (Task) puede tener muchos Comentarios (Comments)
 Task.hasMany(Comment, {

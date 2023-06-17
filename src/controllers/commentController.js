@@ -8,36 +8,44 @@ import {
 } from "../services/commentService.js";
 
 const getAllTaskComment = async (req, res) => {
-  let taskId = req.params.taskId;
+  let validated = validate(req);
 
-  let allTaskComment = await getAllTaskCommentService(taskId);
+  if (validated !== null || !validated === undefined) {
+    let taskId = req.params.taskId;
 
-  switch (allTaskComment["status"]) {
-    case "Ok":
-      return res.status(200).json(allTaskComment);
+    let allTaskComment = await getAllTaskCommentService(taskId);
 
-    case "No Content":
-      return res.status(200).json(allTaskComment);
+    switch (allTaskComment["status"]) {
+      case "Ok":
+        return res.status(200).json(allTaskComment);
 
-    case "Bad Request":
-      return res.status(400).json(allTaskComment);
+      case "No Content":
+        return res.status(200).json(allTaskComment);
 
-    default:
-      return res.status(500).json({
-        status: "Internal Server Error",
-        message: "Algo malo sucedio en el servidor",
-      });
+      case "Bad Request":
+        return res.status(400).json(allTaskComment);
+
+      default:
+        return res.status(500).json({
+          status: "Internal Server Error",
+          message: "Algo malo sucedio en el servidor",
+        });
+    }
   }
+
+  return res.status(400).json({
+    status: "Bad Request",
+    errors: validated["errors"],
+  });
 };
 
 const getTaskComment = async (req, res) => {
-  let validated = validate(req, res);
+  let validated = validate(req);
 
   if (validated !== null || validated === undefined) {
     let taskId = req.params.taskId;
     let commentId = req.params.commentId;
     let getComment = await getTaskCommentService(taskId, commentId);
-
     switch (getComment["status"]) {
       case "Ok":
         return res.status(200).json(getComment);
@@ -90,12 +98,16 @@ const createTaskComment = async (req, res) => {
 };
 
 const editTaskComment = async (req, res) => {
-    let validated = validate(req, res);
+  let validated = validate(req, res);
 
   if (validated !== null || validated === undefined) {
     let taskId = req.params.taskId;
     let commentId = req.params.commentId;
-    let updateComment = await updateTaskCommentService(taskId, commentId, req.body);
+    let updateComment = await updateTaskCommentService(
+      taskId,
+      commentId,
+      req.body
+    );
     switch (updateComment["status"]) {
       case "Ok":
         return res.status(200).json(updateComment);
@@ -121,27 +133,28 @@ const editTaskComment = async (req, res) => {
 };
 
 const deleteTaskComment = async (req, res) => {
-    let validated = validate(req, res);
+  let validated = validate(req);
 
   if (validated !== null || validated === undefined) {
     let taskId = req.params.taskId;
     let commentId = req.params.commentId;
     let deleteComment = await deleteTaskCommentService(taskId, commentId);
     switch (deleteComment["status"]) {
-        case "Ok":
-          return res.status(200).json(deleteComment);
-    
-        case "Bad Request":
-          return res.status(400).json(deleteComment);
-    
-        case "Not Found":
-          return res.status(404).json(deleteComment);
-    
-        default:return res.status(500).json({
-            status: "Internal Server Error",
-            message: "Algo malo sucedio en el servidor",
-          });
-      }
+      case "Ok":
+        return res.status(200).json(deleteComment);
+
+      case "Bad Request":
+        return res.status(400).json(deleteComment);
+
+      case "Not Found":
+        return res.status(404).json(deleteComment);
+
+      default:
+        return res.status(500).json({
+          status: "Internal Server Error",
+          message: "Algo malo sucedio en el servidor",
+        });
+    }
   }
 
   return res.status(400).json({

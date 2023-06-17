@@ -1,4 +1,6 @@
+import { createTaskTag, editTaskTag, getTaskTag } from "../controllers/tagController.js";
 import Task from "../database/models/Task.js";
+import { getAllTaskCommentService } from "./commentService.js";
 
 const getAllTaskService = async () => {
   let result = await Task.findAll().catch((error) => {
@@ -8,7 +10,7 @@ const getAllTaskService = async () => {
   if (result === undefined) {
     return {
       status: "Bad Request",
-      message: "Algo malo sucedio con el servicio, intentalo mas tarde"
+      message: "Algo malo sucedio con el servicio, intentalo mas tarde",
     };
   }
 
@@ -33,9 +35,16 @@ const getTaskService = async (taskId) => {
   if (!result) {
     return {
       status: "Not Found",
-      message: "El recurso solicitado no existe"
+      message: "El recurso solicitado no existe",
     };
   }
+
+  let tag = await getTags(taskId)
+  result["dataValues"]["Tags"] = tag;
+
+  let getComments = await getComment(taskId);
+  delete getComments["status"]
+  result["dataValues"]["Comments"] = getComments["comments"];
 
   return {
     status: "Ok",
@@ -43,7 +52,7 @@ const getTaskService = async (taskId) => {
   };
 };
 
-const createTaskService = async (cratedTaskData) => {
+const createTaskService = async (cratedTaskData, tagArray) => {
   let result = await Task.create(cratedTaskData).catch((error) => {
     console.error(error);
   });
@@ -55,6 +64,9 @@ const createTaskService = async (cratedTaskData) => {
     };
   }
 
+  let resultTag = await createTaskTag(result.dataValues["id"], tagArray);
+  result["dataValues"]["tags"] = resultTag;
+
   return {
     status: "Created",
     message: "El recurso solicitado se creo exitosamente",
@@ -62,7 +74,7 @@ const createTaskService = async (cratedTaskData) => {
   };
 };
 
-const updateTaskService = async (taskId, updatedTaskData) => {
+const updateTaskService = async (taskId, updatedTaskData, updatedTaskTagData) => {
   let result = await Task.update(updatedTaskData, {
     where: { id: taskId },
   }).catch((error) => console.error(error));
@@ -70,32 +82,37 @@ const updateTaskService = async (taskId, updatedTaskData) => {
   if (result === undefined) {
     return {
       status: "Bad Request",
-      message: "Algo malo sucedio con el servicio, intentalo mas tarde"
+      message: "Algo malo sucedio con el servicio, intentalo mas tarde",
     };
   }
-
-  if (result[0] === 0) {
+  
+  let resultTag = await editTaskTag(taskId, updatedTaskTagData);
+  console.log(result, resultTag["status"])
+  if (result[0] !== 0 || resultTag["status"] !== "Not Modified") {
     return {
-      status: "Not Modified",
-      message: "El recurso solicitado no existe",
+      status: "Ok",
+      message: "El recurso se actualizo correctamente",
     };
   }
 
   return {
-    status: "Ok",
-    message: "El recurso se actualizo correctamente",
+    status: "Not Modified",
+    message: "El recurso solicitado no existe",
   };
+
 };
 
 const deleteTaskService = async (taksId) => {
   let result = await Task.destroy({
     where: { id: taksId },
-  }).catch((error) => { console.error(error) })
+  }).catch((error) => {
+    console.error(error);
+  });
 
   if (result === undefined) {
     return {
       status: "Bad Request",
-      message: "Algo malo sucedio con el servicio, intentalo mas tarde"
+      message: "Algo malo sucedio con el servicio, intentalo mas tarde",
     };
   }
 
@@ -111,6 +128,24 @@ const deleteTaskService = async (taksId) => {
     message: "El recurso fue eliminado correctamente",
   };
 };
+
+async function getTags(taskId){
+  let tag = await getTaskTag(taskId);
+  if(tag === []){
+    return;
+  }
+
+  return tag;  
+}
+
+async function getComment(taskId) {
+  return await getAllTaskCommentService(taskId);
+}
+
+async function updateTag(taskId, tagData){
+  console.log("Entro")
+  await editTaskTag(taskId, tagData);
+}
 
 export {
   getAllTaskService,
